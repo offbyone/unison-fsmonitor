@@ -517,6 +517,8 @@ fn main() -> Fallible<()> {
         Ok(())
     });
 
+    // send the initial version command on the monitor as part of the handshake
+    monitor.send_cmd("VERSION", &["1"]);
     for event in rx {
         monitor.handle_event(event)?;
     }
